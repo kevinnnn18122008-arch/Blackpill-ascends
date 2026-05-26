@@ -1,0 +1,824 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #e8e8e8;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+    z-index: 1000;
+}
+
+.navbar-left .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.navbar-right {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.navbar-right a {
+    text-decoration: none;
+    color: #b8b8b8;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-right a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #c0c0c0, #ffffff);
+    transition: width 0.3s ease;
+}
+
+.navbar-right a:hover {
+    color: #ffffff;
+}
+
+.navbar-right a:hover::after {
+    width: 100%;
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 80px;
+}
+
+.liquid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#liquidCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    z-index: 10;
+    text-align: center;
+    animation: fadeInDown 1.2s ease-out;
+}
+
+.headline {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff, #c0c0c0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subheadline {
+    font-size: 1.3rem;
+    color: #a8a8a8;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 6rem;
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+    padding: 1rem 2.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    color: #000;
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #c0c0c0;
+    box-shadow: inset 0 0 20px rgba(192, 192, 192, 0.05);
+}
+
+.btn-secondary:hover {
+    background: rgba(192, 192, 192, 0.1);
+    border-color: #ffffff;
+    box-shadow: inset 0 0 20px rgba(192, 192, 192, 0.15), 0 0 20px rgba(192, 192, 192, 0.2);
+}
+
+.btn-learn {
+    background: transparent;
+    color: #c0c0c0;
+    border: 1px solid #404040;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.85rem;
+}
+
+.btn-learn:hover {
+    color: #ffffff;
+    border-color: #c0c0c0;
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.3);
+}
+
+/* ========== PILL ANIMATION ========== */
+.pill-animation-container {
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.pill-wrapper {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    perspective: 1000px;
+}
+
+.pill {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    border-radius: 75px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(192, 192, 192, 0.1);
+    animation: pillBreak 3s ease-in-out infinite;
+}
+
+.pill-break {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #c0c0c0, transparent);
+    left: 50%;
+    transform: translateX(-50%);
+    animation: crackGlow 3s ease-in-out infinite;
+}
+
+@keyframes pillBreak {
+    0% {
+        transform: scaleX(1) rotateZ(0deg);
+    }
+    40% {
+        transform: scaleX(1) rotateZ(0deg);
+    }
+    50% {
+        transform: scaleX(1.05) rotateZ(2deg);
+    }
+    60% {
+        transform: scaleX(0.95) rotateZ(-2deg);
+    }
+    100% {
+        transform: scaleX(1) rotateZ(0deg);
+    }
+}
+
+@keyframes crackGlow {
+    0%, 40%, 100% {
+        box-shadow: none;
+        opacity: 0;
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(192, 192, 192, 0.6);
+        opacity: 1;
+    }
+}
+
+/* ========== COURSES SECTION ========== */
+.courses {
+    padding: 6rem 2rem;
+    background: #0a0a0a;
+    position: relative;
+}
+
+.courses::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c0c0c0, transparent);
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 4rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff, #c0c0c0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.courses-scroll {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 2rem 0;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.courses-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.courses-scroll::-webkit-scrollbar-track {
+    background: rgba(192, 192, 192, 0.05);
+    border-radius: 10px;
+}
+
+.courses-scroll::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border-radius: 10px;
+}
+
+.course-card {
+    min-width: 300px;
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(192, 192, 192, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    scroll-snap-align: start;
+    backdrop-filter: blur(10px);
+}
+
+.course-card:hover {
+    border-color: rgba(192, 192, 192, 0.4);
+    box-shadow: 0 10px 40px rgba(192, 192, 192, 0.15);
+    transform: translateY(-5px);
+}
+
+.course-image {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(192, 192, 192, 0.1));
+}
+
+.course-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 1.5rem 1.5rem 0.5rem;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+}
+
+.course-card p {
+    padding: 0.5rem 1.5rem 1.5rem;
+    font-size: 0.95rem;
+    color: #a8a8a8;
+    line-height: 1.5;
+}
+
+.course-card .btn {
+    margin: 0 1.5rem 1.5rem;
+    width: calc(100% - 3rem);
+}
+
+/* ========== CONTENT SECTIONS ========== */
+section:not(.hero):not(.courses) {
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+    border-top: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.content-wrapper.reverse {
+    direction: rtl;
+}
+
+.content-wrapper.reverse > * {
+    direction: ltr;
+}
+
+.content-text h2 {
+    margin-bottom: 1.5rem;
+}
+
+.section-desc {
+    font-size: 1.1rem;
+    color: #a8a8a8;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.workout-details,
+.mindset-details,
+.career-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-item h4 {
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.2px;
+    font-weight: 600;
+}
+
+.detail-item p {
+    color: #909090;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.content-visual {
+    position: relative;
+    height: 400px;
+}
+
+.visual-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.08) 0%, rgba(192, 192, 192, 0.02) 100%);
+    border: 1px solid rgba(192, 192, 192, 0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #606060;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.visual-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(192, 192, 192, 0.1) 0%, transparent 70%);
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.physique-visual::after {
+    content: '💪 Physique Visual';
+    position: relative;
+    z-index: 1;
+}
+
+.mindset-visual::after {
+    content: '🧠 Mindset Visual';
+    position: relative;
+    z-index: 1;
+}
+
+.career-visual::after {
+    content: '📈 Career Visual';
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== CONSULTATION SECTION ========== */
+.consultation {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.03) 0%, rgba(0, 0, 0, 0.5) 100%);
+    border-top: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.consultation-desc {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #a8a8a8;
+    margin-bottom: 3rem;
+}
+
+.consultation-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.consultation-form input,
+.consultation-form textarea {
+    padding: 1rem 1.5rem;
+    background: rgba(192, 192, 192, 0.05);
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    border-radius: 4px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.consultation-form input::placeholder,
+.consultation-form textarea::placeholder {
+    color: #707070;
+}
+
+.consultation-form input:focus,
+.consultation-form textarea:focus {
+    outline: none;
+    background: rgba(192, 192, 192, 0.1);
+    border-color: rgba(192, 192, 192, 0.5);
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.1);
+}
+
+.consultation-form button {
+    align-self: center;
+    margin-top: 1rem;
+}
+
+/* ========== PAYMENT SECTION ========== */
+.payment {
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-top: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.payment-desc {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #a8a8a8;
+    margin-bottom: 4rem;
+}
+
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+}
+
+.pricing-card {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(192, 192, 192, 0.15);
+    border-radius: 8px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.pricing-card:hover {
+    border-color: rgba(192, 192, 192, 0.4);
+    box-shadow: 0 20px 60px rgba(192, 192, 192, 0.15);
+    transform: translateY(-10px);
+}
+
+.pricing-card.featured {
+    border-color: rgba(192, 192, 192, 0.4);
+    background: rgba(192, 192, 192, 0.08);
+    transform: scale(1.05);
+}
+
+.pricing-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.3px;
+}
+
+.price {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #c0c0c0;
+    margin-bottom: 0.5rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(192, 192, 192, 0.15);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.features li {
+    padding: 0.6rem 0;
+    color: #a8a8a8;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.05);
+}
+
+.features li:last-child {
+    border-bottom: none;
+}
+
+.razorpay-placeholder {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(192, 192, 192, 0.05);
+    border: 1px dashed rgba(192, 192, 192, 0.2);
+    border-radius: 8px;
+    color: #707070;
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background: #000000;
+    border-top: 1px solid rgba(192, 192, 192, 0.1);
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.footer-section h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.2px;
+}
+
+.footer-section p {
+    color: #808080;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section a {
+    color: #808080;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #c0c0c0;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(192, 192, 192, 0.1);
+    color: #606060;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .navbar-right {
+        gap: 1.5rem;
+    }
+
+    .navbar-right a {
+        font-size: 0.85rem;
+    }
+
+    .headline {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+    }
+
+    .subheadline {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .content-wrapper,
+    .content-wrapper.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 2rem;
+    }
+
+    .content-visual {
+        height: 250px;
+    }
+
+    .courses-scroll {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .pricing-card.featured {
+        transform: scale(1);
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        margin-bottom: 2rem;
+    }
+
+    section:not(.hero):not(.courses) {
+        padding: 3rem 1.5rem;
+    }
+
+    .courses {
+        padding: 3rem 1.5rem;
+    }
+
+    .footer-content {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .navbar-left .logo {
+        font-size: 1.3rem;
+    }
+
+    .navbar-right {
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+    }
+
+    .navbar-right a {
+        display: block;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        gap: 0.8rem;
+    }
+
+    .course-card {
+        min-width: 280px;
+    }
+
+    .pricing-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-item {
+        margin-bottom: 1rem;
+    }
+
+    .consultation-form {
+        gap: 1rem;
+    }
+}
